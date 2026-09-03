@@ -1,6 +1,6 @@
 streamlit
 google-genai
-gtts
+gTTS
 requests
 pandas
 python-dotenv
