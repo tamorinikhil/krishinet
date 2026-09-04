@@ -8,7 +8,7 @@ from google.genai import types
 load_dotenv()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-MODEL = "gemini-2.0-flash-lite"
+MODEL = "gemini-3.5-flash-lite"
 
 def ask_gemini(prompt, system_prompt="You are a helpful agricultural assistant for Indian farmers."):
     try:
