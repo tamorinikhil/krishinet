@@ -12,7 +12,7 @@ def render():
     uploaded = st.file_uploader("Upload crop photo", type=["jpg", "jpeg", "png"])
 
     if uploaded:
-        st.image(uploaded, caption="Uploaded Image", use_column_width=True)
+       st.image(uploaded, caption="Uploaded Image", use_container_width=True)
         image_bytes = uploaded.read()
 
         if st.button("Diagnose Disease"):
