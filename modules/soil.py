@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from utils.gemini_client import ask_gemini
 from utils.tts import speak
-import os
 
 def render():
     st.header("🌱 Soil Health Lookup")
@@ -11,27 +10,12 @@ def render():
     crop = st.session_state.get("crop", "Wheat")
     language = st.session_state.get("language", "Hindi")
 
-    data_path = "data/soil_health.csv"
-
-    if not os.path.exists(data_path):
-        st.warning("Soil data file not found. Using sample data for demo.")
-        soil_data = pd.DataFrame([
-            {"District": "Lucknow",    "Nitrogen": "Low",    "Phosphorus": "Medium", "Potassium": "High",   "pH": 7.2, "Organic_Carbon": "Low"},
-            {"District": "Agra",       "Nitrogen": "Medium", "Phosphorus": "Low",    "Potassium": "Medium", "pH": 7.8, "Organic_Carbon": "Low"},
-            {"District": "Amritsar",   "Nitrogen": "High",   "Phosphorus": "High",   "Potassium": "High",   "pH": 7.0, "Organic_Carbon": "Medium"},
-            {"District": "Ludhiana",   "Nitrogen": "High",   "Phosphorus": "Medium", "Potassium": "High",   "pH": 6.8, "Organic_Carbon": "Medium"},
-            {"District": "Chennai",    "Nitrogen": "Low",    "Phosphorus": "Low",    "Potassium": "Medium", "pH": 6.5, "Organic_Carbon": "Low"},
-            {"District": "Coimbatore", "Nitrogen": "Medium", "Phosphorus": "Medium", "Potassium": "Medium", "pH": 6.9, "Organic_Carbon": "Medium"},
-            {"District": "Jaipur",     "Nitrogen": "Low",    "Phosphorus": "Low",    "Potassium": "Low",    "pH": 8.1, "Organic_Carbon": "Low"},
-            {"District": "Bhopal",     "Nitrogen": "Medium", "Phosphorus": "Low",    "Potassium": "Medium", "pH": 7.4, "Organic_Carbon": "Low"},
-        ])
-    else:
-        soil_data = pd.read_csv(data_path)
+    soil_data = pd.read_csv("data/soil_health.csv")
 
     row = soil_data[soil_data["District"].str.lower() == district.lower()]
 
     if row.empty:
-        st.warning(f"No soil data for {district}. Showing sample.")
+        st.warning(f"No soil data for {district}. Showing Lucknow data.")
         row = soil_data.iloc[0]
     else:
         row = row.iloc[0]
@@ -39,9 +23,12 @@ def render():
     st.subheader(f"Soil Profile — {district}")
 
     def color_level(level):
-        if level == "Low":    return "🔴 Low"
-        if level == "Medium": return "🟡 Medium"
-        if level == "High":   return "🟢 High"
+        if level == "Low":
+            return "🔴 Low"
+        if level == "Medium":
+            return "🟡 Medium"
+        if level == "High":
+            return "🟢 High"
         return level
 
     col1, col2 = st.columns(2)
@@ -58,10 +45,9 @@ def render():
             prompt = f"""
             District: {district}
             Crop: {crop}
-            Soil profile: N={row['Nitrogen']}, P={row['Phosphorus']}, 
-            K={row['Potassium']}, pH={row['pH']}, 
+            Soil profile: N={row['Nitrogen']}, P={row['Phosphorus']},
+            K={row['Potassium']}, pH={row['pH']},
             Organic Carbon={row['Organic_Carbon']}
-            
             Give specific fertiliser recommendation in {language}:
             - Which fertilisers to use (kg per acre)
             - When to apply

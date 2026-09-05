@@ -1,0 +1,16 @@
+State,District,Nitrogen,Phosphorus,Potassium,pH,Organic_Carbon
+Uttar Pradesh,Lucknow,Low,Medium,High,7.2,Low
+Uttar Pradesh,Agra,Medium,Low,Medium,7.8,Low
+Uttar Pradesh,Varanasi,Low,Low,Medium,7.5,Low
+Punjab,Amritsar,High,High,High,7.0,Medium
+Punjab,Ludhiana,High,Medium,High,6.8,Medium
+Punjab,Patiala,Medium,High,High,7.1,Medium
+Tamil Nadu,Chennai,Low,Low,Medium,6.5,Low
+Tamil Nadu,Coimbatore,Medium,Medium,Medium,6.9,Medium
+Tamil Nadu,Madurai,Low,Medium,Low,6.7,Low
+Rajasthan,Jaipur,Low,Low,Low,8.1,Low
+Madhya Pradesh,Bhopal,Medium,Low,Medium,7.4,Low
+Maharashtra,Nagpur,Medium,Medium,High,7.0,Medium
+Maharashtra,Pune,High,Medium,Medium,6.6,Medium
+Telangana,Hyderabad,Low,Medium,Medium,7.3,Low
+Karnataka,Bengaluru,Medium,High,Medium,6.4,Medium
